@@ -1,0 +1,19 @@
+Source: snoopy
+Section: admin
+Priority: optional
+Maintainer: Marc Haber <mh+debian-packages@zugschlus.de>
+Build-Depends: debhelper (>> 3.0.0)
+Standards-Version: 3.5.2
+
+Package: snoopy
+Architecture: any
+Depends: ${shlibs:Depends}, ld.so.preload-manager (>= 0.1), debconf
+Description: An execve() wrapper and logger
+ snoopy is merely a shared library that is used as a wrapper
+ to the execve() function provided by libc as to log every call
+ to syslog (authpriv).  system administrators may find snoopy
+ useful in tasks such as light/heavy system monitoring, tracking other
+ administrator's actions as well as getting a good 'feel' of
+ what's going on in the system (for example apache running cgi
+ scripts).
+

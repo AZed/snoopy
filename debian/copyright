@@ -1,0 +1,12 @@
+This package was debianized by Aubin Paul <aubin@debian.org> on
+Mon, 16 Apr 2001 16:21:24 -0400 and has been taken over by Marc Haber
+<mh+debian-packages@zugschlus.de> in March 2002.
+
+It was downloaded from http://www.citi.umich.edu/u/marius/snoopy/
+
+Upstream Author(s): Marius <marius@umich.edu>
+
+Copyright:
+
+This program is released under the GPL. On a Debian system, you
+can find a copy of the GPL in /usr/share/common-licenses/GPL

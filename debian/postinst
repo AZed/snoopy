@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+
+PRELOAD="/etc/ld.so.preload"
+LIBNAME="/lib/snoopy.so"
+
+if [ "$1" = "configure" ]; then
+
+	# is snoopy already in $PRELOADFILE?
+
+	test -f	$PRELOAD && grep "^$LIBNAME" $PRELOAD && exit 0
+
+	db_get snoopy/install-ld-preload
+	if [ x"$RET" = x"true" ]; then
+		ld.so.preload-manager -y $LIBNAME > /dev/null
+	fi
+
+	if [ -d /usr/doc -a ! -e /usr/doc/pkg -a -d /usr/share/doc/pkg ]; then
+		ln -sf ../share/doc/pkg /usr/doc/pkg
+	fi
+fi
+
+
+
+#DEBHELPER#

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. /usr/share/debconf/confmodule
+
+PRELOAD="/etc/ld.so.preload"
+LIBNAME="/lib/snoopy.so"
+
+# is snoopy already in $PRELOADFILE?
+
+test -f $PRELOAD && grep "^$LIBNAME" $PRELOAD && exit 0
+
+db_input critical snoopy/install-ld-preload
+db_go

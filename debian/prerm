@@ -1,0 +1,50 @@
+#! /bin/bash
+# prerm script for snoopy
+# stolen from libsafe
+#
+# see: dh_installdeb(1)
+
+set -e
+PRELOAD="/etc/ld.so.preload"
+LIBRARY="/lib/snoopy.so"
+
+# summary of how this script can be called:
+#        * <prerm> remove'
+#        * <old-prerm> upgrade' <new-version>
+#        * <new-prerm> failed-upgrade' <old-version>
+#        * <conflictor's-prerm> remove' in-favour' <package> <new-version>
+#        * <deconfigured's-prerm> deconfigure' in-favour'
+#          <package-being-installed> <version> removing'
+#          <conflicting-package> <version>
+# for details, see /usr/share/doc/packaging-manual/
+
+case "$1" in
+    remove|upgrade|deconfigure)
+        if [ -e /usr/sbin/ld.so.preload-manager ]; then
+         /usr/sbin/ld.so.preload-manager -r $LIBRARY
+        else
+         test -f $PRELOAD && grep $LIBRARY $PRELOAD &&
+         {
+         echo "Warning:";
+         echo "You have added $LIBRARY to your $PRELOAD file."
+         echo "Continuing with the removal of $LIBRARY without removing the"
+         echo "rerecence to $LIBRARY in $PRELOAD will render your system"
+         echo "unusable by programs that require dynamic linking."
+         echo ""
+         echo "Please continue with the removal after $PRELOAD"
+         echo "has been modified accordingly."
+         echo ""
+         echo "Press enter to continue."
+         read
+         }
+        fi
+        ;;
+    failed-upgrade)
+        ;;
+    *)
+        echo "prerm called with unknown argument \$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
