@@ -1,3 +1,54 @@
+snoopy (1.3-8) unstable; urgency=low
+
+  * install japanese debconf templates supplied by Hideki Yamane.
+    Closes: #260919.
+  * use cdbs' automatic build depends creation
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Mon, 20 Dec 2004 12:36:35 +0000
+
+snoopy (1.3-7) unstable; urgency=low
+
+  * ignore ld.so.preload-manager's return code in prerm. Closes: #250723.
+  * Fix debian/copyright to explain the upstream 1.3 tar.gz on
+    sourceforce with different md5sum.
+  * have debian/watch point to heanet.
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Thu,  8 Jul 2004 21:02:38 +0200
+
+snoopy (1.3-6) unstable; urgency=low
+
+  * add debian/watch.
+  * add upstream URL to debian/control.
+  * convert to cdbs
+  * add lintian override against
+    sharedobject-in-library-directory-not-actually-a-shlib lib/snoopy.so
+  * add SNOOPYDEBUG variable to maintainer scripts
+  * fix upstream Makefile to create installation dir (sourceforge
+    ticket #950485)
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Sat,  8 May 2004 16:21:06 +0000
+
+snoopy (1.3-5) unstable; urgency=low
+
+  * fix path bug in README.Debian (closes: #140290).
+  * install dutch debconf templates supplied by cobaco (closes: #206326).
+  * Standards-Version: 3.6.1
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Mon, 25 Aug 2003 07:52:39 +0000
+
+snoopy (1.3-4) unstable; urgency=low
+
+  * convert to po-debconf by applying the patch supplied by Michel
+    Grentzinger. Thanks for helping! (closes: #202424).
+  * re-word german debconf templates.
+  * install french debconf templates supplied by Michael Grentzinger.
+    Thanks again. (closes: #202426).
+  * Standards-Version: 3.6.0.
+  * remove dh_make boilerplate upstream author.
+  * remove unnecessary and b0rken /usr/doc symlink code from postinst.
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Thu, 24 Jul 2003 17:52:20 +0000
+
 snoopy (1.3-3) unstable; urgency=medium
 
   * Function "log" should be static - patch by Juan Cespedes

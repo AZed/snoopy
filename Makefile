@@ -12,7 +12,8 @@ snoopy.so:  snoopy.c snoopy.h
 detect: detect.c
 			$(CC) detect.c -odetect $(LIBS)
 install: all
-			install -m 755 snoopy.so $(DESTDIR)/lib/snoopy.so;
+			install -d -m 755 $(DESTDIR)/lib
+			install -m 755 snoopy.so $(DESTDIR)/lib
 #			./install.sh
 clean:
 			rm detect snoopy.so || true

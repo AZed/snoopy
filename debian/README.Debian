@@ -13,6 +13,6 @@ is removed.
 
 You can install snoopy manually by typing the following:
 
-echo "/usr/lib/snoopy.so" >> /etc/ld.so.preload
+echo "/lib/snoopy.so" >> /etc/ld.so.preload
 
  -- Marc Haber <mh+debian-packages@zugschlus.de>, Sat, 16 Mar 2002 00:00:00 +0100

@@ -4,6 +4,8 @@
 #
 # see: dh_installdeb(1)
 
+[ -n "$SNOOPYDEBUG" ] && set -x
+
 set -e
 PRELOAD="/etc/ld.so.preload"
 LIBRARY="/lib/snoopy.so"
@@ -21,7 +23,7 @@ LIBRARY="/lib/snoopy.so"
 case "$1" in
     remove|upgrade|deconfigure)
         if [ -e /usr/sbin/ld.so.preload-manager ]; then
-         /usr/sbin/ld.so.preload-manager -r $LIBRARY
+         /usr/sbin/ld.so.preload-manager -r $LIBRARY || true
         else
          test -f $PRELOAD && grep $LIBRARY $PRELOAD &&
          {

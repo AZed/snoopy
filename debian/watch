@@ -1,0 +1,3 @@
+version=2
+
+http://heanet.dl.sourceforge.net/sourceforge/snoopylogger/snoopy-(.*)\.tar\.gz debian

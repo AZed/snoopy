@@ -2,6 +2,8 @@
 
 . /usr/share/debconf/confmodule
 
+[ -n "$SNOOPYDEBUG" ] && set -x
+
 PRELOAD="/etc/ld.so.preload"
 LIBNAME="/lib/snoopy.so"
 

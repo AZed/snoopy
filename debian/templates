@@ -1,14 +1,8 @@
 Template: snoopy/install-ld-preload
 Type: boolean
 Default: false
-Description: Install snoopy library to /etc/ld.so.preload
+_Description: Install snoopy library to /etc/ld.so.preload
  snoopy is a library that can only reliably do its work if it is
- mandatorily preloaded via /etc/ld.so.preload. Since this can
- potentially do harm to the system, your consent is needed. Should the
- snoopy library be put into /etc/ld.so.preload?
-Description-de: Snoopy-Library nach /etc/ld.so.preload installieren?
- Snoopy ist eine Bibliothek, die nur zuverlässig funktionieren kann,
- wenn sie für alle Programme vorgeladen wird. Hierfür ist die Datei
- /etc/ld.so.preload vorgesehen. Für diese tiefgreifende Veränderung am
- System ist Ihre Zustimmung notwendig. Soll die Snoopy-Library per
- /etc/ld.so.preload vorgeladen werden?
+ mandatorily preloaded via /etc/ld.so.preload. Since this can potentially
+ do harm to the system, your consent is needed. Should the snoopy library
+ be put into /etc/ld.so.preload?
