@@ -1,0 +1,21 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 40-Makefile-DESTDIR.dpatch by Marc Haber <mh+debian-packages@zugschlus.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Install to $DESTDIR, do not try to install in preload immediately
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./Makefile /tmp/dpep-work.IJOmDk/snoopy/Makefile
+--- ./Makefile	2000-12-21 06:53:15.000000000 +0000
++++ /tmp/dpep-work.IJOmDk/snoopy/Makefile	2005-06-18 11:26:10.751133538 +0000
+@@ -11,7 +11,8 @@
+ detect: detect.c
+ 			$(CC) detect.c -odetect $(LIBS)
+ install: all 
+-			install -m 755 snoopy.so /lib/snoopy.so; \
+-			./install.sh
++			install -d -m 755 $(DESTDIR)/lib
++			install -m 755 snoopy.so $(DESTDIR)/lib
++#			./install.sh
+ clean:
+ 			rm detect snoopy.so

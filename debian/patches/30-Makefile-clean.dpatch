@@ -1,0 +1,16 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 30-Makefile-clean.dpatch by Marc Haber <mh+debian-packages@zugschlus.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Add -f to clean target to avoid non-zero exit
+
+@DPATCH@
+diff -urNad --exclude=CVS --exclude=.svn ./Makefile /tmp/dpep-work.v3S60Q/snoopy/Makefile
+--- ./Makefile	2000-12-21 06:53:15.000000000 +0000
++++ /tmp/dpep-work.v3S60Q/snoopy/Makefile	2005-06-18 11:24:31.595143885 +0000
+@@ -14,4 +14,4 @@
+ 			install -m 755 snoopy.so /lib/snoopy.so; \
+ 			./install.sh
+ clean:
+-			rm detect snoopy.so
++			rm -f detect snoopy.so

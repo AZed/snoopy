@@ -1,3 +1,50 @@
+snoopy (1.3-13) unstable; urgency=low
+
+  * Add patch from Glen Batchelor, Mike O'Connor and Steve Langasek
+    which hopefully fixes getlogin_r issue on amd64. Closes: #409819
+  * New translation: es (Spanish) by Javier Fernández-Sanguino.
+    Closes: #403521
+  * Fix debconf templates to better conform with the developer's
+    reference, tentatively fix translations as well.
+  * Standards-Version: 3.7.2 (no changes necessary)
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Mon, 26 Feb 2007 13:20:37 +0100
+
+snoopy (1.3-12) unstable; urgency=low
+
+  * New translation: sv (Swedish) by Daniel Nylander. Closes: #331592
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Fri, 18 Nov 2005 12:37:30 +0000
+
+snoopy (1.3-11) unstable; urgency=low
+
+  * fix Makefile patch to honor CFLAGS to fix m68k build.
+  * build depend on cdbs 0.4.29 because of bug 300465.
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Wed, 10 Aug 2005 14:02:48 +0000
+
+snoopy (1.3-10) unstable; urgency=low
+
+  * New translation: it (Italian) by Luca Bruno. Closes: #316912
+  * New translation: vi (Vietnamese) by Clytie Siddall. Closes: #318602
+  * changelog cosmetics, remove wrong "not yet released" entry from
+    actually released version 1.3-9
+  * disable DEB_AUTO_UPDATE_DEBIAN_CONTROL
+  * replace hardcoded debconf dependency with ${misc:Depends} to stop
+    being a cdebconf transition blocker.
+  * Standards-Version: 3.6.2 (no changes necessary).
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Sun,  7 Aug 2005 13:25:48 +0000
+
+snoopy (1.3-9) unstable; urgency=low
+
+  * convert to dpatch, debian/-only layout
+  * source control now in svn
+  * add linda override for missing shlibs entry
+  * New translation. cs (Czech) by Martin ¦ín. Closes: #311701
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Sat, 18 Jun 2005 12:25:50 +0000
+
 snoopy (1.3-8) unstable; urgency=low
 
   * install japanese debconf templates supplied by Hideki Yamane.

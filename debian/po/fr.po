@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: snoopy_1.3-3\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-20 11:22+0200\n"
+"Report-Msgid-Bugs-To: mh+debian-packages@zugschlus.de\n"
+"POT-Creation-Date: 2007-02-26 13:12+0100\n"
 "PO-Revision-Date: 2003-07-20 12:11GMT\n"
 "Last-Translator: Michel Grentzinger <mic.grentz@online.fr>\n"
 "Language-Team: French <debian-l10n-french@lists.debian.org>\n"
@@ -21,20 +21,20 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. Type: boolean
 #. Description
-#: ../templates:4
-msgid "Install snoopy library to /etc/ld.so.preload"
-msgstr "Installation de la bibliothèque snoopy dans /etc/ld.so.preload"
+#: ../templates:1001
+msgid "Install snoopy library to /etc/ld.so.preload?"
+msgstr "Installation de la bibliothèque snoopy dans /etc/ld.so.preload ?"
 
+#. Type: boolean
 #. Description
-#: ../templates:4
+#: ../templates:1001
 msgid ""
 "snoopy is a library that can only reliably do its work if it is mandatorily "
 "preloaded via /etc/ld.so.preload. Since this can potentially do harm to the "
-"system, your consent is needed. Should the snoopy library be put into /etc/"
-"ld.so.preload?"
+"system, your consent is needed."
 msgstr ""
 "Snoopy est une bibliothèque qui ne peut être utile que si elle est "
 "préchargée via /etc/ld.so.preload. Puisque cela peut potentiellement "
-"détériorer le système, votre accord est nécessaire. La bibliothèque snoopy "
-"doit-elle être placée dans /etc/ld.so.preload ?"
+"détériorer le système, votre accord est nécessaire."

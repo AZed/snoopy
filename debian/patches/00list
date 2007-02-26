@@ -1,0 +1,5 @@
+10-log-static-142322
+20-Makefile-CFLAGS.dpatch
+30-Makefile-clean.dpatch
+40-Makefile-DESTDIR.dpatch
+50-409819-getlogin_r.dpatch

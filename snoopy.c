@@ -37,7 +37,7 @@
 
 #define FN(ptr,type,name,args)  ptr = (type (*)args)dlsym (REAL_LIBC, name)
 
-static inline void log(const char *filename, char **argv) {
+inline void log(const char *filename, char **argv) {
 	static char *logstring=NULL; 
 	static int argc, size=0;
 	register int i, spos=0;

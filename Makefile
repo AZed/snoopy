@@ -3,17 +3,15 @@
 
 CC = gcc
 LIBS  = -ldl
-DESTDIR = 
 
 all: snoopy.so detect
 
 snoopy.so:  snoopy.c snoopy.h
-			$(CC) -shared -O3 -fPIC -fomit-frame-pointer snoopy.c -osnoopy.so $(LIBS)
+			$(CC) -shared -O3 -fomit-frame-pointer snoopy.c -osnoopy.so $(LIBS)
 detect: detect.c
 			$(CC) detect.c -odetect $(LIBS)
-install: all
-			install -d -m 755 $(DESTDIR)/lib
-			install -m 755 snoopy.so $(DESTDIR)/lib
-#			./install.sh
+install: all 
+			install -m 755 snoopy.so /lib/snoopy.so; \
+			./install.sh
 clean:
-			rm detect snoopy.so || true
+			rm detect snoopy.so

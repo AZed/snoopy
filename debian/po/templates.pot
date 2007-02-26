@@ -1,22 +1,14 @@
-#
-#    Translators, if you are not familiar with the PO format, gettext
-#    documentation is worth reading, especially sections dedicated to
-#    this format, e.g. by running:
-#         info -n '(gettext)PO Files'
-#         info -n '(gettext)Header Entry'
-#
-#    Some information specific to po-debconf are available at
-#            /usr/share/doc/po-debconf/README-trans
-#         or http://www.debian.org/intl/l10n/po-debconf/README-trans
-#
-#    Developers do not need to manually edit POT or PO files.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-20 11:22+0200\n"
+"Report-Msgid-Bugs-To: mh+debian-packages@zugschlus.de\n"
+"POT-Creation-Date: 2007-02-26 13:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,16 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. Type: boolean
 #. Description
-#: ../templates:4
-msgid "Install snoopy library to /etc/ld.so.preload"
+#: ../templates:1001
+msgid "Install snoopy library to /etc/ld.so.preload?"
 msgstr ""
 
+#. Type: boolean
 #. Description
-#: ../templates:4
+#: ../templates:1001
 msgid ""
 "snoopy is a library that can only reliably do its work if it is mandatorily "
 "preloaded via /etc/ld.so.preload. Since this can potentially do harm to the "
-"system, your consent is needed. Should the snoopy library be put into /etc/"
-"ld.so.preload?"
+"system, your consent is needed."
 msgstr ""

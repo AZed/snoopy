@@ -1,2 +1,3 @@
-debian/overrides/snoopy usr/share/lintian/overrides
+debian/overrides/lintian/snoopy usr/share/lintian/overrides
+debian/overrides/linda/snoopy usr/share/linda/overrides
 debian/tmp/lib/snoopy.so lib

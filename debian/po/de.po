@@ -11,12 +11,11 @@
 #
 #    Developers do not need to manually edit POT or PO files.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2003-07-20 11:22+0200\n"
+"Report-Msgid-Bugs-To: mh+debian-packages@zugschlus.de\n"
+"POT-Creation-Date: 2007-02-26 13:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,21 +23,21 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-15\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. Type: boolean
 #. Description
-#: ../templates:4
-msgid "Install snoopy library to /etc/ld.so.preload"
+#: ../templates:1001
+msgid "Install snoopy library to /etc/ld.so.preload?"
 msgstr "Snoopy-Library nach /etc/ld.so.preload installieren?"
 
+#. Type: boolean
 #. Description
-#: ../templates:4
+#: ../templates:1001
 msgid ""
 "snoopy is a library that can only reliably do its work if it is mandatorily "
 "preloaded via /etc/ld.so.preload. Since this can potentially do harm to the "
-"system, your consent is needed. Should the snoopy library be put into /etc/"
-"ld.so.preload?"
+"system, your consent is needed."
 msgstr ""
-"Snoopy kann als preload-Bibliothek nur dann funktionieren, wenn sie"
-"für alle Programme vorgeladen wird. Dies kann in /etc/ld.so.preload "
-"eingestellt werden. Da diese Veränderung potentiell Schaden verursachen "
-"kann, ist Ihre Zustimmung notwendig. Soll die Snoopy-Library per "
-"/etc/ld.so.preload vorgeladen werden?"
+"Snoopy kann als preload-Bibliothek nur dann funktionieren, wenn siefür alle "
+"Programme vorgeladen wird. Dies kann in /etc/ld.so.preload eingestellt "
+"werden. Da diese Veränderung potentiell Schaden verursachen kann, ist Ihre "
+"Zustimmung notwendig."

@@ -2,12 +2,12 @@ Source: snoopy
 Section: admin
 Priority: optional
 Maintainer: Marc Haber <mh+debian-packages@zugschlus.de>
-Build-Depends: @cdbs@
-Standards-Version: 3.6.1
+Build-Depends: @cdbs@, cdbs (>= 0.4.29)
+Standards-Version: 3.6.2
 
 Package: snoopy
 Architecture: any
-Depends: ${shlibs:Depends}, ld.so.preload-manager (>= 0.1), debconf
+Depends: ${shlibs:Depends}, ${misc:Depends}, ld.so.preload-manager (>= 0.1)
 Description: An execve() wrapper and logger
  snoopy is merely a shared library that is used as a wrapper
  to the execve() function provided by libc as to log every call

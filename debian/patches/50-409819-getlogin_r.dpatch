@@ -1,0 +1,41 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 50-Fix-NULL-getlogin.dpatch by  <Mike O'Connor <stew@vireo.org>>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad trunk~/snoopy.c trunk/snoopy.c
+--- trunk~/snoopy.c	2007-02-26 09:58:14.000000000 +0100
++++ trunk/snoopy.c	2007-02-26 09:59:30.000000000 +0100
+@@ -26,6 +26,7 @@
+ #include <dlfcn.h>
+ #include <syslog.h>
+ #include "snoopy.h"
++#include "string.h"
+ 
+ #define min(a,b) a<b?a:b
+ 
+@@ -41,6 +42,7 @@
+ 	static char *logstring=NULL; 
+ 	static int argc, size=0;
+ 	register int i, spos=0;
++	static char login[256];
+ 	#if INTEGRITY_CHECK
+ 	static char **argv_copy;
+ 	static int *t_size;
+@@ -96,9 +98,12 @@
+ 	   free(*(argv_copy+i));
+ 	#endif
+ 
+-	syslog(LOG_INFO, "[%s, uid:%d sid:%d]: %s", getlogin(), getuid(), getsid(0), logstring); 
+-	free(logstring);
++        if( getlogin_r(login, 255) ) {
++	    strcpy(login,"unknown");
++	}
+ 
++	syslog(LOG_INFO, "[%s, uid:%d sid:%d]: %s", login, getuid(), getsid(0), logstring); 
++	free(logstring);
+ }
+ 
+ int execve(const char *filename, char **argv, char **envp) {
