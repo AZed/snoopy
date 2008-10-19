@@ -2,8 +2,9 @@ Source: snoopy
 Section: admin
 Priority: optional
 Maintainer: Marc Haber <mh+debian-packages@zugschlus.de>
+Homepage: http://sourceforge.net/projects/snoopylogger/
 Build-Depends: debhelper (>= 4.1.0), dpatch, cdbs (>= 0.4.29)
-Standards-Version: 3.7.2
+Standards-Version: 3.8.0.0
 
 Package: snoopy
 Architecture: any
@@ -17,4 +18,4 @@ Description: An execve() wrapper and logger
  what's going on in the system (for example apache running cgi
  scripts).
  .
- Upstream URL: http://sourceforge.net/projects/snoopylogger/
+  Homepage: http://sourceforge.net/projects/snoopylogger/

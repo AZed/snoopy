@@ -8,14 +8,14 @@
 # or http://www.debian.org/intl/l10n/po-debconf/README-trans
 # Developers do not need to manually edit POT or PO files.
 # , fuzzy
-# 
-# 
+#
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: snoopy 1.3-11\n"
 "Report-Msgid-Bugs-To: mh+debian-packages@zugschlus.de\n"
 "POT-Creation-Date: 2007-02-26 13:12+0100\n"
-"PO-Revision-Date: 2005-10-05 05:54+0200\n"
+"PO-Revision-Date: 2007-02-26 18:55+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -26,16 +26,11 @@ msgstr ""
 #. Description
 #: ../templates:1001
 msgid "Install snoopy library to /etc/ld.so.preload?"
-msgstr "Lägg till snoopy till /etc/ld.so.preload?"
+msgstr "Installera snoopy-biblioteket till /etc/ld.so.preload?"
 
 #. Type: boolean
 #. Description
 #: ../templates:1001
-msgid ""
-"snoopy is a library that can only reliably do its work if it is mandatorily "
-"preloaded via /etc/ld.so.preload. Since this can potentially do harm to the "
-"system, your consent is needed."
-msgstr ""
-"snoopy är ett bibliotek som bara kan göra sitt jobb om det förladdas via /"
-"etc/ld.so.preload. Eftersom detta kan potentiellt göra skada till ditt "
-"system så bör du angöra vad som ska göras."
+msgid "snoopy is a library that can only reliably do its work if it is mandatorily preloaded via /etc/ld.so.preload. Since this can potentially do harm to the system, your consent is needed."
+msgstr "snoopy är ett bibliotek som bara kan göra sitt jobb om det först läses in via /etc/ld.so.preload. Eftersom detta potentiellt sett kan göra skada på ditt system så behövs ditt medgivande."
+

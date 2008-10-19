@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 . /usr/share/debconf/confmodule
 
 [ -n "$SNOOPYDEBUG" ] && set -x
@@ -11,5 +13,5 @@ LIBNAME="/lib/snoopy.so"
 
 test -f $PRELOAD && grep "^$LIBNAME" $PRELOAD && exit 0
 
-db_input critical snoopy/install-ld-preload
+db_input critical snoopy/install-ld-preload || true
 db_go

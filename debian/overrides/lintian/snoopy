@@ -1,1 +1,4 @@
 snoopy: sharedobject-in-library-directory-not-actually-a-shlib lib/snoopy.so
+snoopy: command-with-path-in-maintainer-script prerm:26 /usr/sbin/ld.so.preload-manager
+snoopy: sharedobject-in-library-directory-missing-soname lib/snoopy.so
+snoopy: description-contains-homepage

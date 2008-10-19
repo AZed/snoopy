@@ -2,7 +2,7 @@
 ## 50-Fix-NULL-getlogin.dpatch by  <Mike O'Connor <stew@vireo.org>>
 ##
 ## All lines beginning with `## DP:' are a description of the patch.
-## DP: No description.
+## DP: this patch fixes bug #409819
 
 @DPATCH@
 diff -urNad trunk~/snoopy.c trunk/snoopy.c

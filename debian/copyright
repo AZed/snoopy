@@ -12,7 +12,7 @@ identical contents verified with diff -urN on 2004-05-24.
 
 Upstream Author: Marius <marius@umich.edu>
 
-Copyright:
+Copyright (c) 2000 marius@linux.com,mbm@linux.com
 
 This program is released under the GPL. On a Debian system, you
 can find a copy of the GPL in /usr/share/common-licenses/GPL
