@@ -1,7 +1,7 @@
 /* snoopy.c -- execve() logging wrapper 
  * Copyright (c) 2000 marius@linux.com,mbm@linux.com
  *
- * $Id: snoopy.c 25 2010-02-11 20:58:06Z bostjanskufca $
+ * $Id$
  *
  * Part hacked on flight KL 0617, 30,000 ft or so over the Atlantic :) 
  * 
