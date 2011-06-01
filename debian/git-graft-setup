@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "f07024ab57116ace59b79de2c285274670c1133b 5da8b79e18bc2c2ee12ea9651d3a990fba29951b" > .git/info/grafts

@@ -1,3 +1,21 @@
+snoopy (1.8.0-0.1) unstable; urgency=low
+
+  * New upstream version.
+    * Static log function patch moved into upstream code
+    * -fPIC build patch moved into upstream code
+    * rm -f on clean patch moved into upstream code
+    * DESTDIR patch moved into upstream code
+    * getlogin patch appears to be obsolete, removed
+    * Upstream version 1.8.0 now supports filtering, but due to the
+      potential for system lockup and a bug in the Makefile it is not
+      enabled in this Debian revision pending closer examination.
+  * Changed from CDBS to DH for debian/rules
+  * Removed dependency on ld.so.preload-manager
+  * Removed obsolete Linda override
+  * Updated copyright file and converted it to DEP-5 format
+
+ -- Zed Pobre <zed@debian.org>  Wed, 01 Jun 2011 13:08:49 -0400
+
 snoopy (1.3-13) unstable; urgency=low
 
   * Add patch from Glen Batchelor, Mike O'Connor and Steve Langasek

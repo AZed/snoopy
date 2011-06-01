@@ -1,0 +1,35 @@
+If you have retrieved this software via Git, be aware that a Git graft
+is in use to link the old source code out of tarballs to the new
+upstream Git repository (which abandoned the old revisions).  Git
+graft metadata is not pulled with the repository, so to match the
+Debian working environment, you will need to ensure that the following
+line is present in the .git/info/grafts file:
+
+f07024ab57116ace59b79de2c285274670c1133b 5da8b79e18bc2c2ee12ea9651d3a990fba29951b
+
+To set this up automatically, run:
+
+debian/git-graft-setup
+
+from the top level directory in branch 'debian'.
+
+
+The branch setup is as follows:
+
+'master': tracks the upstream branch master at
+git://snoopylogger.git.sourceforge.net/gitroot/snoopylogger/snoopylogger
+
+'upstream': tracks the upstream source code from tarball from before
+upstream moved to Git
+
+'debian': Merges from specific tag points in 'master' (previously
+'upstream') and adds Debian-specific patches
+
+'pristine-tar': pristine-tar entries for known tarballs.
+
+
+Upstream versions are tagged with the version number (no prefix, to
+match the upstream Git repository tagging syntax).  Debian versions
+are tagged as "debian/x.y.z-d"
+
+-- Zed Pobre, 2011-06-02
