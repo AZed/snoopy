@@ -2,7 +2,7 @@ Source: snoopy
 Section: admin
 Priority: optional
 Maintainer: Marc Haber <mh+debian-packages@zugschlus.de>
-Build-Depends: debhelper (>= 7)
+Build-Depends: debhelper (>= 8)
 Standards-Version: 3.7.2
 
 Package: snoopy
