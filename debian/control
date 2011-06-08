@@ -1,9 +1,12 @@
 Source: snoopy
 Section: admin
 Priority: optional
-Maintainer: Marc Haber <mh+debian-packages@zugschlus.de>
+Maintainer: Zed Pobre <zed@debian.org>
 Build-Depends: debhelper (>= 8)
 Standards-Version: 3.7.2
+Homepage: http://sourceforge.net/projects/snoopylogger/
+Vcs-Git: git://anonscm.debian.org/collab-maint/snoopy.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/snoopy.git
 
 Package: snoopy
 Architecture: any
@@ -16,5 +19,3 @@ Description: An execve() wrapper and logger
  administrator's actions as well as getting a good 'feel' of
  what's going on in the system (for example apache running cgi
  scripts).
- .
- Upstream URL: http://sourceforge.net/projects/snoopylogger/
