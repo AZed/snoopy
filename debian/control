@@ -11,7 +11,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/snoopy.git
 Package: snoopy
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: An execve() wrapper and logger
+Description: execve() wrapper and logger
  snoopy is merely a shared library that is used as a wrapper
  to the execve() function provided by libc as to log every call
  to syslog (authpriv).  system administrators may find snoopy
