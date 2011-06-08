@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Zed Pobre <zed@debian.org>
 Build-Depends: debhelper (>= 8), autoconf
-Standards-Version: 3.7.2
+Standards-Version: 3.9.2
 Homepage: http://sourceforge.net/projects/snoopylogger/
 Vcs-Git: git://anonscm.debian.org/collab-maint/snoopy.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/snoopy.git

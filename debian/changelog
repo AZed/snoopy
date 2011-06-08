@@ -14,6 +14,7 @@ snoopy (1.8.0-1) unstable; urgency=low
   * Removed dependency on ld.so.preload-manager
   * Removed obsolete Linda override
   * Updated copyright file and converted it to DEP-5 format
+  * Standards-Version: 3.9.2
 
  -- Zed Pobre <zed@debian.org>  Wed, 08 Jun 2011 14:29:58 -0400
 
