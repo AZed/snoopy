@@ -15,10 +15,16 @@ Comment:
   .
   All remaining source is taken from the SourceForge Git repository listed
   in the Source field above.
-License: GPL-2
-  This program is free software; you can redistribute it
-  and/or modify it under the terms of the GNU General Public
-  License as published by the Free Software Foundation, version 2
+License: GPL-2+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2, or (at your option)
+  any later version.
+  .
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
   .
   On Debian systems, the full text of the GNU General Public
   License version 2 can be found in the file
@@ -28,7 +34,7 @@ Files: *
 Copyright: 2000-2010 Marius Aamodt Eriksen <marius@umich.edu>,
            2000-2010 Mike Baker <mbm@linux.com>,
            2010-2011 Boštjan Škufca <bostjan@a2o.si>
-License: GPL-2
+License: GPL-2+
 
 Files: debian/*
 Copyright: 2001 Aubin Paul <aubin@debian.org>,

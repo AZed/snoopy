@@ -1,3 +1,10 @@
+snoopy (1.8.0-2) unstable; urgency=low
+
+  * Correct debian/copyright to show that the upstream code is licensed
+    GPL-2+, not just GPL-2 (thanks to Ansgar Burchardt for noticing).
+
+ -- Zed Pobre <zed@debian.org>  Thu, 09 Jun 2011 10:42:55 -0400
+
 snoopy (1.8.0-1) unstable; urgency=low
 
   * New maintainer.
