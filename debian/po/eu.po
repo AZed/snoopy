@@ -1,0 +1,35 @@
+# translation of snoopy debconf template to Basque
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Xabier Bilbao <xabidu@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: snoopy(upload-july05)\n"
+"Report-Msgid-Bugs-To: mh+debian-packages@zugschlus.de\n"
+"POT-Creation-Date: 2007-02-26 13:12+0100\n"
+"PO-Revision-Date: 2008-06-30 00:37+0200\n"
+"Last-Translator: Xabier Bilbao <xabidu@gmail.com>\n"
+"Language-Team: Basque <debian-l10n-basque@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:1001
+msgid "Install snoopy library to /etc/ld.so.preload?"
+msgstr "Instalatu snoopy liburutegia /etc/ld.so.preload-en?"
+
+#. Type: boolean
+#. Description
+#: ../templates:1001
+msgid ""
+"snoopy is a library that can only reliably do its work if it is mandatorily "
+"preloaded via /etc/ld.so.preload. Since this can potentially do harm to the "
+"system, your consent is needed."
+msgstr ""
+"Snoopy liburutegiak, dagokion lana behar bezala egin ahal izateko, /etc/ld."
+"so.preload bidez aurre-kargaturik izan behar du. Hala egiteak sistemari "
+"kalte egin diezaiokeenez, beharrezkoa da zure baimena.  "

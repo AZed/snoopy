@@ -25,6 +25,60 @@ snoopy (1.8.0-1) unstable; urgency=low
 
  -- Zed Pobre <zed@debian.org>  Wed, 08 Jun 2011 14:29:58 -0400
 
+snoopy (1.3-15) unstable; urgency=low
+
+  * ACK NMU
+  * New translation: tr (Turkish) by Mert Dirik. Closes: #489156
+  * Add homepage field
+  * Standards-Version: 3.8.0.0
+  * Remove Linda Overrides
+  * Lintian:
+    * Override command-with-path-in-maintainer-script prerm:26
+      /usr/sbin/ld.so.preload-manager warning - we need to be absolutely
+      sure that the ld.so.preload-manager binary is the one that we expect,
+      or we risk leaving a preload entry without the corresponding library.
+      So we abort if we are not sure about this.
+    * Temporarily Override snoopy: sharedobject-in-library-directory-
+      missing-soname lib/snoopy.so - lintian is right, but this change
+      cannot be in lenny. #502712.
+    * Temporarily Override snoopy: description-contains-homepage
+      The Homepage stanza is in the description on purpose, and will
+      go away post-lenny. #502713.
+  * Add -e to postinst and config
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Sun, 19 Oct 2008 13:31:01 +0200
+
+snoopy (1.3-14.1) unstable; urgency=low
+
+  * Non-maintainer upload to fix pending l10n issues.
+  * Debconf translations:
+    - Finnish. Closes: #468354
+    - Brazilian Portuguese. Closes: #473243
+    - Russian. Closes: #488133
+    - Galician. Closes: #488187
+    - Romanian. Closes: #488705
+    - Basque. Closes: #488797
+
+ -- Christian Perrier <bubulle@debian.org>  Tue, 24 Jun 2008 07:52:20 +0200
+
+snoopy (1.3-14) unstable; urgency=low
+
+  * Update translation: sv (Swedish) by Daniel Nylander. Closes: #412535
+  * Update translation. cs (Czech) by Martin ¦ín. Closes: #412694
+  * Update translation: it (Italian) by Luca Bruno. Closes: #412696
+  * Update translation: fr (French) by Michel Grentzinger. Closes: #412958
+  * Update translation: nl (Dutch) by cobaco. Closes: #413233
+  * Update translation: es (Spanish) by Javier Fernández-Sanguino.
+    Closes: #413557
+  * New translation: pt (Portuguese) by Miguel Figueiredo. Closes: #417919
+  * prerm: just error out if ld.so.preload-manager is not installed
+  * lintian:
+    * add description to 50-409819-getlogin_r.dpatch
+    * add proper copyright notice
+    * Standards-Version: 3.7.3 (no changes necessary)
+
+ -- Marc Haber <mh+debian-packages@zugschlus.de>  Thu, 28 Feb 2008 15:22:22 +0100
+
 snoopy (1.3-13) unstable; urgency=low
 
   * Add patch from Glen Batchelor, Mike O'Connor and Steve Langasek
