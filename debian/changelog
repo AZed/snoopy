@@ -1,3 +1,9 @@
+snoopy (1.8.0-5) unstable; urgency=low
+
+  * Add Slovak Debconf translation (closes: #685370)
+
+ -- Zed Pobre <zed@debian.org>  Mon, 20 Aug 2012 17:29:26 -0400
+
 snoopy (1.8.0-4) unstable; urgency=low
 
   * Add Danish Debconf translation (closes: #660392)

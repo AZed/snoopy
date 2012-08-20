@@ -1,0 +1,39 @@
+# Slovak translations for snoopy package
+# Slovenské preklady pre balík snoopy.
+# Copyright (C) 2012 THE snoopy'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the snoopy package.
+# Automatically generated, 2012.
+# Slavko <linux@slavino.sk>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: snoopy 1.8.0-4\n"
+"Report-Msgid-Bugs-To: mh+debian-packages@zugschlus.de\n"
+"POT-Creation-Date: 2007-02-26 13:12+0100\n"
+"PO-Revision-Date: 2012-08-20 11:12+0200\n"
+"Last-Translator: Slavko <linux@slavino.sk>\n"
+"Language-Team: slovenčina <debian-l10n-slovak@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-POFile-SpellExtra: preload etc ld prednačítaná snoopy\n"
+
+#. Type: boolean
+#. Description
+#: ../templates:1001
+msgid "Install snoopy library to /etc/ld.so.preload?"
+msgstr "Nainštalovať knižnicu snoopy do /etc/ld.so.preload?"
+
+#. Type: boolean
+#. Description
+#: ../templates:1001
+msgid ""
+"snoopy is a library that can only reliably do its work if it is mandatorily "
+"preloaded via /etc/ld.so.preload. Since this can potentially do harm to the "
+"system, your consent is needed."
+msgstr ""
+"snoopy je knižnica, ktorá môže robiť svoju prácu spoľahlivo, len ak je "
+"povinne prednačítaná pomocou /etc/ld.so.preload. Keďže to potenciálne môže "
+"poškodiť systém, je potrebný váš súhlas."
