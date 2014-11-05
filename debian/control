@@ -2,8 +2,8 @@ Source: snoopy
 Section: admin
 Priority: optional
 Maintainer: Zed Pobre <zed@debian.org>
-Build-Depends: debhelper (>= 8), autoconf
-Standards-Version: 3.9.3
+Build-Depends: debhelper (>= 9), autoconf
+Standards-Version: 3.9.6
 Homepage: http://sourceforge.net/projects/snoopylogger/
 Vcs-Git: git://anonscm.debian.org/collab-maint/snoopy.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/snoopy.git
@@ -17,5 +17,5 @@ Description: execve() wrapper and logger
  to syslog (authpriv).  system administrators may find snoopy
  useful in tasks such as light/heavy system monitoring, tracking other
  administrator's actions as well as getting a good 'feel' of
- what's going on in the system (for example apache running cgi
+ what's going on in the system (for example Apache running cgi
  scripts).
