@@ -5,8 +5,8 @@ Maintainer: Zed Pobre <zed@debian.org>
 Build-Depends: debhelper (>= 9), dpkg-dev (>= 1.16.1), autoconf
 Standards-Version: 3.9.6
 Homepage: http://sourceforge.net/projects/snoopylogger/
-Vcs-Git: git://anonscm.debian.org/collab-maint/snoopy.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/snoopy.git
+Vcs-Git: https://github.com/a2o/snoopy.git
+Vcs-Browser: https://github.com/a2o/snoopy
 
 Package: snoopy
 Architecture: any
