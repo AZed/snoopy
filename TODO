@@ -1,1 +1,5 @@
-$Id: TODO 5 2010-02-09 20:00:51Z bostjanskufca $
+
+TODO list for Snoopy Logger
+
+- Include patch by Sebastien Gross, located here:
+    https://github.com/renard/snoopylogger

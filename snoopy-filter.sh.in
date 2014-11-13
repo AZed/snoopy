@@ -1,11 +1,7 @@
-#!/bin/sh
+#!@SNOOPY_EXCLUDE_PREFIX@/sh
 
 #
 # Sample snoopy external filter
-#
-# Log message is received as first argument, which is stored in variable $1.
-# Whatever this script returns is the message that snoopy sends to syslog.
-# Non-zero exit status will be logged to syslog.
 #
 #
 # WARNING
@@ -15,13 +11,28 @@
 # WARNING
 # WARNING   Otherwise snoopy enters infinite loop which will hang your system.
 # WARNING
+#
+# Filter conventions:
+# * Log message is received as first argument, which is stored in variable $1.
+# * Whatever this script returns is the message that snoopy sends to syslog.
+# * If this scripts does not produce any output, logging procedure is interrupted
+#   and nothing gets sent to syslog - message does not appear in logs.
+# * Non-zero exit status will be logged to syslog.
+#
 
 # External programs used by this filter
 SNOOPY_EXCLUDE_PREFIX="@SNOOPY_EXCLUDE_PREFIX@"
+SNOOPY_CAT="$SNOOPY_EXCLUDE_PREFIX/cat"
+SNOOPY_CUT="$SNOOPY_EXCLUDE_PREFIX/cut"
+SNOOPY_ECHO="$SNOOPY_EXCLUDE_PREFIX/echo"
+SNOOPY_GETENT="$SNOOPY_EXCLUDE_PREFIX/getent"
 SNOOPY_GREP="$SNOOPY_EXCLUDE_PREFIX/grep"
 SNOOPY_SED="$SNOOPY_EXCLUDE_PREFIX/sed"
 
+# Fuse
+export PATH="$SNOOPY_EXCLUDE_PREFIX"
+
 # Here we just output whatever we have received with slight modification
 if [ "x$1" != "x" ]; then
-    echo "$@" | $SNOOPY_SED -e 's/bash/bush/g'
+    $SNOOPY_ECHO "$@" | $SNOOPY_SED -e 's/bash/bush/g'
 fi
