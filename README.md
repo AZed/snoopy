@@ -1,41 +1,89 @@
-# Snoopy Logger #
-
-
-
-## 1. DESCRIPTION ##
-
-Snoopy is designed to aid system administrators by providing a log of commands
-that were executed on the system. Snoopy should be completely transparent to
-users and to applications. It acts as a preloaded library that provides a
-wrapper around calls to execve() syscall. Logging is done via syslog.
+# Snoopy Logger
 
 [![Flattr Snoopy Logger project](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=a2o&url=https://github.com/a2o/snoopy&title=Snoopy Logger)
 
 
 
-## 2. INSTALLATION ##
+## 1. What does Snoopy do, then?
 
-Snoopy supports various features that  can be enabled by supplying arguments
-to configure command. Consult `./configure --help' for more information.
+It sends every executed command to syslog.
 
 
-### Download options:
 
-You can download snoopy release tarballs from this location:
+## 2. How do I install Snoopy?
+
+Snoopy can be installed by:
+
+* using packages provided by your Linux distribution ("apt-get" or "yum" or "zypper" + "install snoopy"), or
+* building it manually.
+
+Manual build is preferred if you distribution only provides <2.0.0 Snoopy versions.
+Details below.
+
+**WARNING: This manual is for Snoopy version 2.0.0+. Snoopy versions below 2.0.0 are not supported anymore. Please do not submit any bug/feature/change requests that concern versions before 2.0.0.**
+
+
+
+## 3. Configuration
+
+Most parts of Snoopy can and should be configured at build time.
+However, since version 2.0.0 Snoopy supports optional configuration file.
+But, as this configuration file is optional, it needs to be enabled when Snoopy is being built.
+
+
+
+## 4. Where does the output go?
+
+These are default destinations:
+
+* CentOS: /var/log/secure
+* Debian: /var/log/auth.log
+* Ubuntu: /var/log/auth.log
+
+For actual destination check your syslog daemon configuration.
+
+
+
+## 5. Detailed descriptions
+
+### 5.1 How does Snoopy work?
+
+It acts as a preloaded library that provides a wrapper around calls to
+execve() syscall. Logging is done via syslog.
+Snoopy should be completely transparent to users and to applications.
+
+
+
+### 5.2 Linux distribution-specific installation instructions
+
+For Debian/Ubuntu package generation, please refer to
+`contrib/debian/README.Build.md`.
+
+
+
+### 5.3 Building Snoopy from sources
+
+#### 5.3.1 Download options
+
+You can download Snoopy release tarballs from this location:
 http://source.a2o.si/download/snoopy/
 
 Alternatively you can download it from GitHub, by selecting a release tag at
-the branch dropdown selector, and then clicking the ↓ZIP button, next to the
+the branch drop-down selector, and then clicking the ↓ZIP button, next to the
 repository URL, below project description.
 (I know this is awkward, but GitHub has discontinued the "Uploads" feature)
 
 
-### Installation procedure is simple:
+
+#### 5.3.2 Installation procedure
+
+Snoopy supports various features that  can be enabled by supplying arguments
+to configure command. Consult `./configure --help' for more information.
 
     # Only if you are building directly from git repository:
     ./autogen.sh
 
-    # Check configuration options:
+    # Check configuration options, see section 5.3.3 for details:
     ./configure --help
 
     # Then continue with normal build procedure:
@@ -43,13 +91,17 @@ repository URL, below project description.
     make
     make install
 
-At this point, snoopy is **installed but not yet enabled**.
+    # At this point, Snoopy is **installed but not yet enabled**.
+    # Enable it
+    make enable
 
-For Debian/Ubuntu package generation, please refer to
-`contrib/debian/README.Build.md`.
+    # Reboot your system for Snoopy to be picked by all programs.
+    reboot
 
 
-### Configuring log output
+#### 5.3.3 Build configuration
+
+##### 5.3.3.1 Configuring log output
 
 Snoopy already has default log message format configured, but by using
 "./configure --with-message-format=FORMAT" you can adjust it to your
@@ -67,7 +119,7 @@ name, and text following the colon is passed as argument to the provider
 in question.
 
 
-### Configuring filtering
+##### 5.3.3.2 Configuring filtering
 
 Snoopy supports message filtering. Filtering support must be
 enabled at build time, here is an example:
@@ -85,29 +137,28 @@ See sample configuration file etc/snoopy.ini for list and description
 of supported filter configurations.
 
 
-### Optional configuration file support
+##### 5.3.3.3 Optional configuration file support
 
 Snoopy supports optional configuration file, which may help with
 development and/or configuration endeavours. Configuration file must
 be enabled at build time:
 
-    --with-config-file[=PATH]
+    --enable-config-file
 
-If PATH is not specified, default path SYSCONFDIR/snoopy.ini is used
-instead. See sample configuration file etc/snoopy.ini for list and
-description of supported configuration directives.
-
-
-
+Configuration file is installed as SYSCONFDIR/snoopy.ini. SYSCONFDIR
+can be changed with --sysconfdir=PATH configuration directive.
+See sample configuration file etc/snoopy.ini for list and description
+of supported configuration directives.
 
 
-## 3. HOW TO ENABLE ##
 
-### 3.a) Enable for specific program ###
+### 5.4 How to enable/activate Snoopy
+
+#### 5.4.1 Enable for specific program
 
 If you wish to monitor only certain applications you can do so through
 the LD_PRELOAD environmental variable - simply set it to the full path
-to snoopy.so shared library before starting the application.
+to libsnoopy.so shared library before starting the application.
 
 Example:
 
@@ -116,22 +167,27 @@ Example:
     unset LD_PRELOAD
 
 
-### 3.b) Enable system-wide snoopy on 32-bit-only or 64-bit-only systems ###
+#### 5.4.2 Enable system-wide Snoopy on 32-bit-only or 64-bit-only systems
 
 WARNING: Using this method on multilib systems (64-bit systems capable
 WARNING: of running 32-bit applications) can cause malfunction because
 WARNING: preload config file /etc/ld.so.preload makes  no  distinction
 WARNING: between 32- and 64-bit programs and shared libraries.
 
-    # Enable it using entry in /etc/ld.so.preload
+    # Use special Snoopy-enabling script
+    snoopy-enable
+
+    # Or enable it using build tools
     make enable
 
+Explanation:
+
 An entry is created in /etc/ld.so.preload file  which  causes  execv()
-and execve() system calls to be intercepted by snoopy and logged via
+and execve() system calls to be intercepted by Snoopy and logged via
 syslog.
 
 
-### 3.c) For multilib systems ###
+#### 5.4.3 For multilib systems
 
 Content of /etc/ld.so.preload should include the following line:
 
@@ -141,10 +197,10 @@ This applies only when you have installed both 32bit and 64bit version
 of the library in the appropriate paths.
 
 
-### 3.d) For multilib systems with LD_PRELOAD_* environmental variables ###
+#### 5.4.4 For multilib systems with LD_PRELOAD_* environmental variables
 
 On systems that support LD_PRELOAD_32 and LD_PRELOAD_64  you  can  use
-those variables to force loading of snoopy. If you with to  enable  it
+those variables to force loading of Snoopy. If you with to  enable  it
 system-wide, ensure that correct values are held  by  those  variables
 at boot time. Consult section  4.a  of  this  README  on  how  to  set
 environmental variables. Setting them at boot time is usually  distro-
@@ -159,9 +215,9 @@ OS documentation for details on this subject.
 
 
 
-## 4. OUTPUT ##
+### 5.5 Snoopy output
 
-The exact location  of  your  snoopy output  depends  on  your  syslog
+The exact location  of  your  Snoopy output  depends  on  your  syslog
 configuration. Usually it gets stored in one of the following files:
 
     /var/log/auth*
@@ -170,19 +226,23 @@ configuration. Usually it gets stored in one of the following files:
 
 
 
-## 5. HOW TO DISABLE ##
+### 5.6 How to disable Snoopy
 
-To disable snoopy, simply edit /etc/ld.so.preload and remove the
-reference to snoopy.so. Also unset  any  environmental  variable  that
-references snoopy (LD_PRELOAD, LD_PRELOAD_32 and LD_PRELOAD_64).  Then
-you may also delete snoopy shared library from  your  system.  Default
-installation path of snoopy shared library is:
+The simplest way is by using special script:
+
+    snoopy-disable
+
+To manually disable Snoopy, simply edit /etc/ld.so.preload and remove
+reference to libsnoopy.so. Also unset any environmental variable that
+references Snoopy (LD_PRELOAD, LD_PRELOAD_32 and LD_PRELOAD_64).  Then
+you may also delete Snoopy shared library from  your  system.  Default
+installation path of Snoopy shared library is:
 
     /usr/local/lib/libsnoopy.so
 
 
 
-## 6. NOTE ##
+## 6. Architecture note
 
 execv() calls are now explicitly logged.   Although,  according to the
 man page for execv(),  it is supposed to call execve().   To this date
@@ -191,18 +251,19 @@ are working to find out why.
 
 
 
-## 7. CONTRIBUTING TO SNOOPY DEVELOPMENT ##
+## 7. Contributing to Snoopy development
 
 New ideas are welcome. Most of change requests so far were about additional
 log data or filtering capabilities, therefore most of development/changes
 is expected in that area.
 
 Here are basic rules for input provider development:
+
 - input providers are located in src/input/
 - input provider names should be lower case, with underscores for word separation
 - data about currently executing process is available in src/inputdatastorage.*
     files. Consult existing providers on how to use it (filename for example)
-- each input provider must be self-sufficient. Do not rely on other parts of snoopy
+- each input provider must be self-sufficient. Do not rely on other parts of Snoopy
 - each input provider must be tidy (free all mallocs, close all file descriptors)
 - the first argument passed to each provider is a char array to return message into
 - input provider message must not be longer than SNOOPY_INPUT_MESSAGE_MAX_SIZE
@@ -211,14 +272,16 @@ Here are basic rules for input provider development:
 - code indentation: 4 spaces, no tabs
 
 If you have developed a shiny new input provider and you would like to
-start using it with snoopy, there are three additional places where you
-need to add references to it to make snoopy fully aware of it:
+start using it with Snoopy, there are three additional places where you
+need to add references to it to make Snoopy fully aware of it:
+
 - src/input/Makefile.am   (location is evident)
 - src/inputregistry.h     (one reference)
 - src/inputregistry.c     (two references)
 
 Rules for filter development are the same as for new input providers, with the
 following additional specifics:
+
 - filters are located in src/filters
 - each filter is passed two arguments: logMessage and filter argument (if any,
     otherwise an empty string is passed)
@@ -231,13 +294,15 @@ following additional specifics:
     of filter chain processing and message is not logged to syslog
 
 If you have developed a shiny new filter and you would like to
-start using it with snoopy, there are three additional places where you
-need to add references to it to make snoopy fully aware of it:
+start using it with Snoopy, there are three additional places where you
+need to add references to it to make Snoopy fully aware of it:
+
 - src/filter/Makefile.am   (location is evident)
 - src/filterregistry.h     (one reference)
 - src/filterregistry.c     (two references)
 
 Pushing code upstream:
+
 - your commits should be easily readable, with concise comments
 - your commits should follow the KISS principle: do one thing, and do it well
 - same goes for pull requests - one pull request should contain one change only
@@ -250,14 +315,14 @@ That is it. Happy coding! :)
 
 
 
-## 8. CREDITS ##
+## 8. Credits
 
 Snoopy Logger was created by:
      marius@umich.edu
         mbm@linux.com
 
 It is currently maintained by:
-    bostjan@a2o.si
+    Bostjan Skufca, bostjan@a2o.si
 
 Development is located at the following URI (see pull requests for
 contributor credits):
@@ -280,11 +345,15 @@ https://bugzilla.redhat.com/show_bug.cgi?id=745603
 https://github.com/a2o/snoopy/issues/1
 
 **How to test**
+
 - Configure, build, install, enable
 - Make sure it is working by tailing log files
 - Reboot #1
 - Reboot #2. If second reboot is successful, you are on the safe side
 
-Distributions known to work OK:
-* Ubuntu Server 12.04.01
+Distributions known to work OK (all 64-bit, all tested with 2.0.0+ versions):
+
+* CentOS 6.5
+* Debian 7
+* Ubuntu Server 12.04.01, 14.04
 * Slackware 12.2+
