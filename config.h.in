@@ -1,7 +1,13 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
 /* Define to 1 if you have the `getcwd' function. */
 #undef HAVE_GETCWD
+
+/* Define to 1 if you have the `getsid' function. */
+#undef HAVE_GETSID
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -19,17 +25,32 @@
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H
 
+/* Define to 1 if you have the `memset' function. */
+#undef HAVE_MEMSET
+
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
 
+/* Define to 1 if you have the `strchr' function. */
+#undef HAVE_STRCHR
+
+/* Define to 1 if you have the `strdup' function. */
+#undef HAVE_STRDUP
+
 /* Define to 1 if you have the <strings.h> header file. */
 #undef HAVE_STRINGS_H
 
 /* Define to 1 if you have the <string.h> header file. */
 #undef HAVE_STRING_H
+
+/* Define to 1 if you have the `strstr' function. */
+#undef HAVE_STRSTR
+
+/* Define to 1 if you have the `strtol' function. */
+#undef HAVE_STRTOL
 
 /* Define to 1 if you have the <syslog.h> header file. */
 #undef HAVE_SYSLOG_H
@@ -42,6 +63,13 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
+/* Name of package */
+#undef PACKAGE
 
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
@@ -61,29 +89,38 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
-/* Enable logging of Current Working Directory */
-#undef SNOOPY_CWD_LOGGING
+/* INI configuration file path to use */
+#undef SNOOPY_CONF_CONFIG_FILE
 
-/* Prefix to commands excluded from logging */
-#undef SNOOPY_EXCLUDE_PREFIX
+/* Enable error logging */
+#undef SNOOPY_CONF_ERROR_LOGGING_ENABLED
 
-/* Enable external filtering support */
-#undef SNOOPY_EXTERNAL_FILTER
+/* Custom filter chain to use */
+#undef SNOOPY_CONF_FILTER_CHAIN_custom
 
-/* External filter command to use */
-#undef SNOOPY_EXTERNAL_FILTER_COMMAND
+/* Enable filtering */
+#undef SNOOPY_CONF_FILTER_ENABLED
+
+/* Custom message format to use */
+#undef SNOOPY_CONF_LOG_MESSAGE_FORMAT_custom
 
 /* Only log commands executed by root */
-#undef SNOOPY_ROOT_ONLY
+#undef SNOOPY_CONF_ROOT_ONLY
 
 /* Syslog facility to use */
-#undef SNOOPY_SYSLOG_FACILITY
+#undef SNOOPY_CONF_SYSLOG_FACILITY
 
 /* Syslog level to use */
-#undef SNOOPY_SYSLOG_LEVEL
+#undef SNOOPY_CONF_SYSLOG_LEVEL
 
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
+
+/* Version number of package */
+#undef VERSION
+
+/* Define to `int' if <sys/types.h> doesn't define. */
+#undef gid_t
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
@@ -96,3 +133,6 @@
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 #undef size_t
+
+/* Define to `int' if <sys/types.h> doesn't define. */
+#undef uid_t

@@ -5,8 +5,23 @@
 ################################################################################
 
 Steps:
-1. update ChangeLog, commit
-2. bump version in configure.in, commit
-3. run autoheader and autoconf and commit changes to 'configure', if any
-4. create git tag 'snoopy-X.Y.Z'
-5. cd to the repo root and run dev-scripts/make-release.sh
+
+1. Run autoscan and compare results:
+    - 'autoscan'
+    - use 'git diff' to see if anything changed from previous run
+    - add suggestions to configure.ac
+    - compare configure.scan to configure.ac
+    - update config.h.in
+    - commit
+
+2. Update version info:
+    - in ChangeLog
+    - in configure.ac
+    - commit
+
+3. Create git tag:
+    - called 'snoopy-X.Y.Z'   # For github to provide proper snoopy release tarball name
+
+4. Release it
+    - cd to the repo root
+    - run "./dev-scripts/create-release.sh snoopy-x.y.z"
