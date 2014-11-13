@@ -9,6 +9,8 @@ that were executed on the system. Snoopy should be completely transparent to
 users and to applications. It acts as a preloaded library that provides a
 wrapper around calls to execve() syscall. Logging is done via syslog.
 
+[![Flattr Snoopy Logger project](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=a2o&url=https://github.com/a2o/snoopy&title=Snoopy Logger)
+
 
 
 ## 2. INSTALLATION ##
@@ -19,21 +21,19 @@ to configure command. Consult `./configure --help' for more information.
 
 ### Download options:
 
-    # You can download snoopy release directly from this location:
-    http://source.a2o.si/download/snoopy/
+You can download snoopy release tarballs from this location:
+http://source.a2o.si/download/snoopy/
 
-    # Alternatively you can download it from GitHub, by selecting a release tag
-    # at the branch dropdown selector, and then clicking the ↓ZIP button, next
-    # to the repository URL, below project description.
-    # (I know this is awkward, but GitHub has discontinued the "Uploads" feature)
-    https://github.com/a2o/snoopy/
+Alternatively you can download it from GitHub, by selecting a release tag at
+the branch dropdown selector, and then clicking the ↓ZIP button, next to the
+repository URL, below project description.
+(I know this is awkward, but GitHub has discontinued the "Uploads" feature)
 
 
 ### Installation procedure is simple:
 
-    # If you have pulled snoopy from GIT, you must run autoconf first:
-    autoheader
-    autoconf
+    # Only if you are building directly from git repository:
+    ./autogen.sh
 
     # Check configuration options:
     ./configure --help
@@ -44,6 +44,60 @@ to configure command. Consult `./configure --help' for more information.
     make install
 
 At this point, snoopy is **installed but not yet enabled**.
+
+For Debian/Ubuntu package generation, please refer to
+`contrib/debian/README.Build.md`.
+
+
+### Configuring log output
+
+Snoopy already has default log message format configured, but by using
+"./configure --with-message-format=FORMAT" you can adjust it to your
+needs.
+
+Log message format specification example:
+
+    --with-message-format="text1:%{input1} text2:%{input2} text3:%{input3:arg}"
+
+Text outside %{...} is considered literal and is copied as-is to final
+log message. On the other hand, text found within %{...} has special
+meaning: it calls input provider. If input provider specification
+contains a colon, then text before colon is considered input provider
+name, and text following the colon is passed as argument to the provider
+in question.
+
+
+### Configuring filtering
+
+Snoopy supports message filtering. Filtering support must be
+enabled at build time, here is an example:
+
+    # REQUIRED TO ENABLE FILTERING FEATURE
+    --enable-filter
+
+    # HOW TO DEFINE FILTER CHAINS
+    --with-filter-chain="FILTER_CHAIN_SPEC"
+
+By default, if FILTER_CHAIN_SPEC is not configured, empty string is
+used, which effectively disables filtering.
+
+See sample configuration file etc/snoopy.ini for list and description
+of supported filter configurations.
+
+
+### Optional configuration file support
+
+Snoopy supports optional configuration file, which may help with
+development and/or configuration endeavours. Configuration file must
+be enabled at build time:
+
+    --with-config-file[=PATH]
+
+If PATH is not specified, default path SYSCONFDIR/snoopy.ini is used
+instead. See sample configuration file etc/snoopy.ini for list and
+description of supported configuration directives.
+
+
 
 
 
@@ -57,7 +111,7 @@ to snoopy.so shared library before starting the application.
 
 Example:
 
-    export LD_PRELOAD=/usr/local/lib/snoopy.so    # default path
+    export LD_PRELOAD=/usr/local/lib/libsnoopy.so    # default path
     lynx http://linux.com/
     unset LD_PRELOAD
 
@@ -81,7 +135,7 @@ syslog.
 
 Content of /etc/ld.so.preload should include the following line:
 
-    /usr/local/$LIB/snoopy.so
+    /usr/local/$LIB/libsnoopy.so
 
 This applies only when you have installed both 32bit and 64bit version
 of the library in the appropriate paths.
@@ -124,7 +178,7 @@ references snoopy (LD_PRELOAD, LD_PRELOAD_32 and LD_PRELOAD_64).  Then
 you may also delete snoopy shared library from  your  system.  Default
 installation path of snoopy shared library is:
 
-    /usr/local/lib/snoopy.so
+    /usr/local/lib/libsnoopy.so
 
 
 
@@ -137,17 +191,77 @@ are working to find out why.
 
 
 
-## 7. CREDITS ##
+## 7. CONTRIBUTING TO SNOOPY DEVELOPMENT ##
+
+New ideas are welcome. Most of change requests so far were about additional
+log data or filtering capabilities, therefore most of development/changes
+is expected in that area.
+
+Here are basic rules for input provider development:
+- input providers are located in src/input/
+- input provider names should be lower case, with underscores for word separation
+- data about currently executing process is available in src/inputdatastorage.*
+    files. Consult existing providers on how to use it (filename for example)
+- each input provider must be self-sufficient. Do not rely on other parts of snoopy
+- each input provider must be tidy (free all mallocs, close all file descriptors)
+- the first argument passed to each provider is a char array to return message into
+- input provider message must not be longer than SNOOPY_INPUT_MESSAGE_MAX_SIZE
+- each input provider must have a corresponding header file
+- all input providers must build with -Wall -Werror flags (enabled by default)
+- code indentation: 4 spaces, no tabs
+
+If you have developed a shiny new input provider and you would like to
+start using it with snoopy, there are three additional places where you
+need to add references to it to make snoopy fully aware of it:
+- src/input/Makefile.am   (location is evident)
+- src/inputregistry.h     (one reference)
+- src/inputregistry.c     (two references)
+
+Rules for filter development are the same as for new input providers, with the
+following additional specifics:
+- filters are located in src/filters
+- each filter is passed two arguments: logMessage and filter argument (if any,
+    otherwise an empty string is passed)
+- filter argument is literal. If it contains multiple arguments (separated by
+    comma, for example), the filter itself must do the parsing/tokenization.
+- filter MAY modify logMessage. If it does so, the new log message MUST NOT
+    EXCEED the maximum log message size, defined in snoopy.h.
+- filter MUST return SNOOPY_FILTER_PASS or SNOOPY_FILTER_DROP constant
+- if SNOOPY_FILTER_DROP is returned by filter, it causes immediate termination
+    of filter chain processing and message is not logged to syslog
+
+If you have developed a shiny new filter and you would like to
+start using it with snoopy, there are three additional places where you
+need to add references to it to make snoopy fully aware of it:
+- src/filter/Makefile.am   (location is evident)
+- src/filterregistry.h     (one reference)
+- src/filterregistry.c     (two references)
+
+Pushing code upstream:
+- your commits should be easily readable, with concise comments
+- your commits should follow the KISS principle: do one thing, and do it well
+- same goes for pull requests - one pull request should contain one change only
+    (one bugfix or one feature at a time)
+- if you have developed multiple features and/or bugfixes, create separate
+    branches for each one of them, and request merges for each branch
+- the cleaner you code/change/changeset is, the faster it will be merged
+
+That is it. Happy coding! :)
+
+
+
+## 8. CREDITS ##
 
 Snoopy Logger was created by:
      marius@umich.edu
         mbm@linux.com
 
-Currently it is maintained by:
+It is currently maintained by:
     bostjan@a2o.si
 
-Development is currently located at the following URI:
-http://github.com/a2o/snoopy/
+Development is located at the following URI (see pull requests for
+contributor credits):
+    http://github.com/a2o/snoopy/
 
 
 

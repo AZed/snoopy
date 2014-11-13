@@ -3,8 +3,54 @@
 -------------------------------------------------------------------------------
 
 
-2013-FIXME - Version  2.NEXT.NEXT
+2014-11-05 - Version  2.0.0
 ---------------------------
+o Feature: Added support for custom message format specification at
+    configuration time
+o Feature: New input providers:
+    - egroup       (thanks Sébastien Gross)
+    - env          (thanks Taylor Kimball)
+    - eusername    (thanks Sébastien Gross)
+    - group        (thanks Sébastien Gross)
+    - login        (thanks Sébastien Gross)
+    - username     (thanks Sébastien Gross)
+    - tty_uid      (thanks Tony Malkowski)
+    - tty_username
+o Feature: Implemented internal filtering, with the following filters available:
+    - exclude_uid
+    - only_root
+    - only_uid
+o Feature: Added optional support for INI configuration file
+o Feature: Added envp data to intputdatastorage if execve() is used. Prepared
+    for future inputs to consume it.
+o Feature: Created snoopy-enable and snoopy-disable system scripts.
+
+o Distro packaging: added debian/ubuntu packaging data (by Sebastien Gross)
+o Distro packaging: added rhel/centos package spec file (by Jeremy Brown)
+
+o Refactoring: Separated data gathering into separate functions, to be
+    used at will - now they are called "input providers"
+o Refactoring: Removed external filtering, to be replaced with internal
+    filtering capability in the making
+o Refactoring: Removed logging exclusion via prefix, was created for
+    exclusion of logging of external filter commands
+o Refactoring: switched to autotools completely
+o Refactoring: all builds now use -Wall and -Werror
+o Refactoring: removed --enable-cwd-logging (superseded by message formatting
+    options and input provider)
+o Refactoring: snoopy library is now called libsnoopy.so instead of snoopy.so,
+    to conform to autotools syntax
+o Refactoring: ./configure: removed many bugs, added proper syntax and error
+    messages to help user decide what she wants
+o Refactoring: added 'proper' (unified) error handling
+o Refactoring: moved input testing to separate executable, which does not get
+    installed, but is only intended for development/debugging
+o Refactoring: created proper initialization/shutdown methods
+
+o Documentation: added into about writing new input providers
+o Bugfix: fixed compilation failure on debian in inputs/cwd.c (thanks Sébastien Gross)
+o Bugfix: missing snoopy.ini in distribution tarball (thanks Jeremy Brown)
+o Bugfix: When uninstalling, also disable snoopy (remove from /etc/ld.so.preload).
 
 
 2013-04-06 - Version  1.9.0

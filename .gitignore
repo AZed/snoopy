@@ -1,0 +1,41 @@
+### Files produced by autotools
+#
+Makefile.in
+/autom4te.cache
+/autoscan.log
+/configure
+/config.h
+/config.log
+/config.status
+/config.h.in~
+/stamp-h1
+
+
+### Files produced by ./configure
+#
+Makefile
+/libtool
+
+
+### Files produced by build process
+#
+.dirstamp
+*.a
+*.o
+*.la
+*.lo
+.deps
+.libs
+/src/libsnoopy.so
+/bin/snoopy-disable
+/bin/snoopy-enable
+/bin/snoopy-test-all-inputs
+/bin/snoopy-test-output
+/bin/snoopy-detect
+/bin/snoopy-dev-helper
+/contrib/rhel/snoopy.spec
+/contrib/sles/snoopy.spec
+
+### Distribution related files
+#
+/debian
