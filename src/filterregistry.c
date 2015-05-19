@@ -3,7 +3,7 @@
  *
  * File: filterregistry.c
  *
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 
 
 /*
- * Include all filter functions
+ * Include relevant header files
  */
 #include "snoopy.h"
 #include "filterregistry.h"
@@ -32,19 +32,55 @@
 
 
 /*
+ * Include headers of all filter functions
+ */
+#ifdef SNOOPY_CONF_FILTER_ENABLED_exclude_spawns_of
+#include "filter/exclude_spawns_of.h"
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_exclude_uid
+#include "filter/exclude_uid.h"
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_only_root
+#include "filter/only_root.h"
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_only_uid
+#include "filter/only_uid.h"
+#endif
+
+
+
+/*
  * Two arrays holding data about filter functions
  */
 char *snoopy_filterregistry_names[] = {
+#ifdef SNOOPY_CONF_FILTER_ENABLED_exclude_spawns_of
+    "exclude_spawns_of",
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_exclude_uid
     "exclude_uid",
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_only_root
     "only_root",
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_only_uid
     "only_uid",
+#endif
     "",
 };
 
 int (*snoopy_filterregistry_ptrs []) (char *logMessage, char *arg) = {
+#ifdef SNOOPY_CONF_FILTER_ENABLED_exclude_spawns_of
+    snoopy_filter_exclude_spawns_of,
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_exclude_uid
     snoopy_filter_exclude_uid,
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_only_root
     snoopy_filter_only_root,
+#endif
+#ifdef SNOOPY_CONF_FILTER_ENABLED_only_uid
     snoopy_filter_only_uid,
+#endif
 };
 
 

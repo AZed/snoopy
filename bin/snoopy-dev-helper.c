@@ -3,7 +3,7 @@
  *
  * File: snoopy-dev-helper.c
  *
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@
 #include "snoopy.h"
 #include "configuration.h"
 #include "inputdatastorage.h"
-#include "inputregistry.h"
+#include "message.h"
 #include "misc.h"
 
 
@@ -58,7 +58,7 @@ int main (int argc, char **argv)
 
     printf("Snoopy: testing custom message formatting:\n\n");
     printf("Message format used: \n%s\n\n", SNOOPY_LOG_MESSAGE_FORMAT);
-    snoopy_log_message_generate(logMessage, SNOOPY_LOG_MESSAGE_FORMAT);
+    snoopy_message_generateFromFormat(logMessage, SNOOPY_LOG_MESSAGE_FORMAT);
     printf("Produced output:\n%s\n\n", logMessage);
 
 

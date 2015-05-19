@@ -3,7 +3,7 @@
  *
  * File: filterregistry.h
  *
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,15 +19,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
-
-
-
-/*
- * Include headers of all filter functions
- */
-#include "filter/exclude_uid.h"
-#include "filter/only_root.h"
-#include "filter/only_uid.h"
 
 
 

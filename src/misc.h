@@ -3,7 +3,7 @@
  *
  * File: misc.h
  *
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,5 +22,19 @@
 
 
 
+/*
+ * Init/shutdown functions
+ */
 void snoopy_init    ();
 void snoopy_cleanup ();
+
+
+
+/*
+ * String functions
+ */
+void snoopy_string_append (
+    char *destString,
+    char *appendThis,
+    int   destStringMaxLength
+);

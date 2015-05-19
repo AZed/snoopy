@@ -1,4 +1,12 @@
-AM_CFLAGS = -I$(top_srcdir)/src
+### Include common Makefile configuration
+#
+include   $(top_srcdir)/build/Makefile.am.common
+
+
+
+### Use includes from src/ directory
+#
+AM_CFLAGS += -I$(top_srcdir)/src
 
 
 
@@ -19,13 +27,13 @@ bin_PROGRAMS = \
 snoopy_test_output_SOURCES = \
 	snoopy-test-output.c
 snoopy_test_output_LDADD = \
-	$(top_srcdir)/src/libsnoopy_no_execve.la
+	../src/libsnoopy_no_execve.la
 
 
 noinst_PROGRAMS = \
 	snoopy-detect \
 	snoopy-dev-helper \
-        snoopy-test-all-inputs
+	snoopy-test-all-data-sources
 
 snoopy_detect_SOURCES = \
 	snoopy-detect.c
@@ -33,9 +41,9 @@ snoopy_detect_SOURCES = \
 snoopy_dev_helper_SOURCES = \
 	snoopy-dev-helper.c
 snoopy_dev_helper_LDADD = \
-	$(top_srcdir)/src/libsnoopy_no_execve.la
+	../src/libsnoopy_no_execve.la
 
-snoopy_test_all_inputs_SOURCES = \
-	snoopy-test-all-inputs.c
-snoopy_test_all_inputs_LDADD = \
-	$(top_srcdir)/src/libsnoopy_no_execve.la
+snoopy_test_all_data_sources_SOURCES = \
+	snoopy-test-all-data-sources.c
+snoopy_test_all_data_sources_LDADD = \
+	../src/libsnoopy_no_execve.la

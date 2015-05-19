@@ -1,3 +1,11 @@
+snoopy (2:2.3.1rc1) UNRELEASED; urgency=medium
+
+  * Bump version.
+  * Change build options to enable filtering and config file.
+  * Add conflict rules to avoid installing both the snoopy and libsnoopy pkgs
+
+ -- Fred Mora <fmora@datto.com>  Tue, 28 Apr 2015 22:01:18 -0400
+
 snoopy (2:2.0.0rc5-1) unstable; urgency=low
 
   * Bump to version 2.0.0rc5.

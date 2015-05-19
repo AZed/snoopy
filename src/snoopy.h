@@ -2,7 +2,7 @@
  * SNOOPY LOGGER
  *
  * snoopy.h
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,31 +29,46 @@
 
 
 /**
+ * Include all required system headers
+ */
+
+/* This should generaly be done wherever unistd.h is required. */
+/* But sysconf is needed here, and all files include snoopy.h. */
+/* Needed to get getpgid and getsid on older glibc */
+/* This must be the first file to be included, or implicit inclusion (by i.e. <features.h>) does the wrong thing */
+#define  _XOPEN_SOURCE   500
+#include <unistd.h>
+
+/* Needed for GLIBC macros here */
+#include <features.h>
+
+
+
+/**
  * SNOOPY_MAX_ARG_LENGTH
  *
  * Maximum length of arguments passed to execv(e) functions
  */
-#include <unistd.h>
-#define SNOOPY_SYSCONF_ARG_MAX sysconf(_SC_ARG_MAX)
+#define SNOOPY_SYSCONF_ARG_MAX ((-1 == sysconf(_SC_ARG_MAX)) ? 4096 : sysconf(_SC_ARG_MAX))
 
 
 
 /**
- * SNOOPY_INPUT_ARG_MAX_SIZE
+ * SNOOPY_DATASOURCE_ARG_MAX_SIZE
  *
- * Maximum length of a string argument to each input provider
+ * Maximum length of a string argument to each data source
  */
-#define SNOOPY_INPUT_ARG_MAX_SIZE 1024
+#define SNOOPY_DATASOURCE_ARG_MAX_SIZE 1024
 
 
 
 /**
- * SNOOPY_INPUT_MESSAGE_MAX_SIZE
+ * SNOOPY_DATASOURCE_MESSAGE_MAX_SIZE
  *
- * Maximum length of a string returned from any input function,
- * without terminating null character.
+ * Maximum length of a string returned from any data source function,
+ * including terminating null character.
  */
-#define SNOOPY_INPUT_MESSAGE_MAX_SIZE 1024
+#define SNOOPY_DATASOURCE_MESSAGE_MAX_SIZE 1024
 
 
 
@@ -88,9 +103,18 @@
  * SNOOPY_LOG_MESSAGE_MAX_SIZE
  *
  * Maximum length of single (whole) log message,
- * without terminating null character.
+ * including terminating null character.
  */
 #define SNOOPY_LOG_MESSAGE_MAX_SIZE 16383
+
+
+
+/**
+ * SNOOPY_LOG_MESSAGE_FORMAT_default
+ *
+ * Default format of snoopy log message
+ */
+#define   SNOOPY_VERSION   PACKAGE_VERSION
 
 
 
@@ -111,9 +135,9 @@
  *
  * Message format may contain:
  * - any arbitrary text is copied litaraly
- * - text between "%{" and "}" is considered special - it calls input provider
- * - %{input_provider}     calls input provider 'input_provider' without argument
- * - %{input_provider:arg} calls input provider 'input_provider', and passed the given argument to it
+ * - text between "%{" and "}" is considered special - it calls data source
+ * - %{data_source}     calls data source named 'data_source' without argument
+ * - %{data_source:arg} calls data source named 'data_source', and passed the given argument to it
  */
 #ifdef SNOOPY_CONF_LOG_MESSAGE_FORMAT_custom
 #define   SNOOPY_LOG_MESSAGE_FORMAT   SNOOPY_CONF_LOG_MESSAGE_FORMAT_custom
@@ -153,12 +177,12 @@
 
 
 /**
- * SNOOPY_FILTER_ENABLED
+ * SNOOPY_FILTERING_ENABLED
  *
  * Whether filtering is enabled or not
  */
-#ifdef SNOOPY_CONF_FILTER_ENABLED
-#define   SNOOPY_FILTER_ENABLED   1
+#ifdef SNOOPY_CONF_FILTERING_ENABLED
+#define   SNOOPY_FILTERING_ENABLED   1
 #endif
 
 
@@ -202,6 +226,38 @@
 #define   SNOOPY_CONFIG_FILE   SNOOPY_CONF_CONFIG_FILE
 #endif
 
+
+
+/**
+ * SNOOPY_OUTPUT
+ *
+ * Where is the outlet of snoopy messages
+ *
+ * By default, messages get sent to syslog. Groundwork for other outputs
+ * is provided to facilitate unforseen uses.
+ */
+#define   SNOOPY_OUTPUT_DEVLOG   "devlog"
+#define   SNOOPY_OUTPUT_FILE     "file"
+#define   SNOOPY_OUTPUT_SOCKET   "socket"
+#define   SNOOPY_OUTPUT_SYSLOG   "syslog"
+
+#ifdef SNOOPY_CONF_OUTPUT_DEFAULT
+
+#define   SNOOPY_OUTPUT_DEFAULT          SNOOPY_CONF_OUTPUT_DEFAULT
+#define   SNOOPY_OUTPUT_DEFAULT_ARG      SNOOPY_CONF_OUTPUT_DEFAULT_ARG
+
+#else   /* SNOOPY_CONF_OUTPUT_DEFAULT */
+
+#if (defined(__GLIBC__) && (2 == __GLIBC__) && (__GLIBC_MINOR__ < 9))
+/* Use 'syslog' on older linuxes that od not support SOCK_CLOEXEC and SOCK_NONBLOCK */
+#define   SNOOPY_OUTPUT_DEFAULT          SNOOPY_OUTPUT_SYSLOG
+#else
+/* Otherwise do not use 'syslog' (was default before), because systemd is funny (blocks the syslog() call */
+#define   SNOOPY_OUTPUT_DEFAULT          SNOOPY_OUTPUT_DEVLOG
+#endif
+#define   SNOOPY_OUTPUT_DEFAULT_ARG      ""
+
+#endif   /* SNOOPY_CONF_OUTPUT_DEFAULT */
 
 
 /**

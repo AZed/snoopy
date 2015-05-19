@@ -3,7 +3,7 @@
  *
  * File: configuration.h
  *
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ typedef struct {
 
     int   config_file_enabled;
     char *config_file_path;
+    int   config_file_found;
     int   config_file_parsed;
 
     int   error_logging_enabled;
@@ -37,9 +38,13 @@ typedef struct {
     char *message_format;
     int   message_format_malloced;
 
-    int   filter_enabled;
+    int   filtering_enabled;
     char *filter_chain;
     int   filter_chain_malloced;
+
+    char *output;
+    char *output_arg;
+    int   output_arg_malloced;
 
     int   syslog_facility;
     int   syslog_level;
@@ -53,10 +58,3 @@ extern   snoopy_configuration_type   snoopy_configuration;
  */
 void  snoopy_configuration_ctor ();
 void  snoopy_configuration_dtor ();
-int   snoopy_configuration_load_file (char *iniFilePath);
-// Parsing functions
-void  snoopy_configuration_parse_syslog_facility      (char *confVal);
-void  snoopy_configuration_parse_syslog_level         (char *confVal);
-char *snoopy_configuration_syslog_value_cleanup       (char *confVal);
-char *snoopy_configuration_syslog_value_remove_prefix (char *confVal);
-void  snoopy_configuration_strtoupper (char *s);

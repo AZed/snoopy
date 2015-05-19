@@ -80,16 +80,16 @@ echo "SNOOPY INSTALL: Starting installation, log file name: $SNOOPY_INSTALL_LOGF
 
 
 
-### Get last stable snoopy release
+### Get last stable Snoopy release
 #
-echo -n "SNOOPY INSTALL: Getting latest snoopy version: "
+echo -n "SNOOPY INSTALL: Getting latest Snoopy version: "
 SNOOPY_PACKAGE_FILENAME=`wget -q -O - $SNOOPY_DOWNLOAD_URI_PREFIX/snoopy-latest-package-filename.txt`
 SNOOPY_PACKAGE_DIRNAME=`echo "$SNOOPY_PACKAGE_FILENAME" | sed -e 's/\.tar.gz$//'`
 echo "$SNOOPY_PACKAGE_FILENAME"
 
 
 
-### Download snoopy package
+### Download Snoopy package
 #
 echo -n "SNOOPY INSTALL: Downloading $SNOOPY_DOWNLOAD_URI_PREFIX/$SNOOPY_PACKAGE_FILENAME... "
 rm -f $SNOOPY_PACKAGE_FILENAME
@@ -109,7 +109,7 @@ echo "done."
 
 
 echo -n "SNOOPY INSTALL: Configuring... "
-./configure --enable-config-file --sysconfdir=/etc >> $SNOOPY_INSTALL_LOGFILE 2>&1
+./configure --enable-config-file --sysconfdir=/etc --enable-filtering >> $SNOOPY_INSTALL_LOGFILE 2>&1
 echo "done."
 
 echo -n "SNOOPY INSTALL: Building... "
@@ -135,13 +135,13 @@ echo "TIP #1: If Snoopy is to be enabled for all processes, you need"
 echo "        to restart your system, or at least all services on it."
 echo
 echo "TIP #2: If you ever need to disable Snoopy, you should use provided"
-echo "        'snoopy-disable' script. Use 'snoopy-enable' to reenable."
+echo "        'snoopy-disable' script. Use 'snoopy-enable' to reenable it."
 echo
 echo "TIP #3: Snoopy output can usually be found somewhere in /var/log/*"
 echo "        Check your syslog configuration for details."
 echo
 echo "TIP #4: Configuration file location: /etc/snoopy.ini"
-echo "        Check your syslog configuration for details."
+echo "        See included comments for additional configuration options."
 echo
 echo "Snoopy wishes you a happy logging experience:)"
 echo

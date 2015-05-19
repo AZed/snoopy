@@ -3,7 +3,7 @@
  *
  * File: error.c
  *
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,6 +61,6 @@ void snoopy_error_handler (char *errorMsg)
 {
     /* Only send error to syslog if configured like that */
     if (SNOOPY_TRUE == snoopy_configuration.error_logging_enabled) {
-        snoopy_log_send_to_syslog(errorMsg, SNOOPY_LOG_ERROR);
+        snoopy_log_dispatch(errorMsg, SNOOPY_LOG_ERROR);
     }
 }

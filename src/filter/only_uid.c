@@ -3,7 +3,7 @@
  *
  * File: snoopy/filter/only_uid.c
  *
- * Copyright (c) 2014 bostjan@a2o.si
+ * Copyright (c) 2014-2015 Bostjan Skufca <bostjan@a2o.si>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,16 +46,19 @@
 
 int snoopy_filter_only_uid (char *msg, char *arg)
 {
-    uid_t  curUid;         // Actual UID of running process
+    uid_t  curUid;     // Actual UID of running process
     int    j;
     char  *str1;
-    char  *saveptr1;
+
+    // Do not assign null to it explicitly, as you get "Explicit null dereference" Coverity error.
+    // If you do not assign it, Coverity complains with "Uninitialized pointer read".
+    char  *saveptr1 = "";
+
 
     /* Get uid of current process */
     curUid = getuid();
 
     /* Loop through all UIDs passed to the filter as argument */
-    saveptr1 = NULL;
     for (j=1, str1=arg;  ; j++, str1=NULL) {
         char  *argCurUidStr;   // Literal UID
         uid_t  argCurUid;      // Actual UID to be used for comparison

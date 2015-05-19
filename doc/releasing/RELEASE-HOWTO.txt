@@ -1,0 +1,46 @@
+################################################################################
+###
+### How to release a new version of Snoopy Logger
+###
+################################################################################
+
+Steps:
+
+
+1. Run these tools to ensure that code quality consistency:
+
+    1a. Run autoscan and compare results:
+        - 'autoscan'
+        - use 'git diff' to see if anything changed from previous run
+        - add suggestions to configure.ac
+        - compare configure.scan to configure.ac
+        - update config.h.in
+        - commit
+
+    1b. Create build and upload it to Coverity:
+        - ./doc/releasing/bin/submit-to-coverity.sh
+        - check coverity for errors, fix them
+
+
+2. Update documentation TOCs
+    - use this tool: https://github.com/ekalinin/github-markdown-toc
+    - commit
+
+
+3. Update version info:
+    - 1. in ChangeLog
+    - 2. in configure.ac
+    - 3. in README.md (displayed on GitHub front page)
+    - commit with sign-off, with exact message "Release X.Y.Z" on the first line
+    - git add ChangeLog configure.ac README.md
+    - git commit -s -m "Release X.Y.Z"
+
+
+4. Create git tag:
+    - called 'snoopy-X.Y.Z'   # For github to provide proper Snoopy release tarball name - we do not use that anymore
+    - git tag snoopy-X.Y.Z
+
+
+5. Release it
+    - cd to the repo root
+    - run "./doc/releasing/bin/create-release.sh snoopy-x.y.z"
