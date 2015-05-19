@@ -7,9 +7,18 @@ include /usr/share/dpkg/buildflags.mk
 	dh $@
 
 override_dh_auto_configure:
+	libtoolize -f
+	aclocal
+	automake --add-missing
 	autoconf
 	dh_auto_configure -- --libdir=/lib
 
+override_dh_install:
+	dh_install
+	ln -s libsnoopy.so.0.0.0 debian/snoopy/lib/snoopy.so
+	rm -f debian/snoopy/lib/libsnoopy.la
+
 override_dh_clean:
 	dh_clean
-	rm -f configure
+	find . -name Makefile.in -exec rm {} \+
+	rm -f aclocal.m4 compile configure test-driver
