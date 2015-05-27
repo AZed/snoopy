@@ -2,7 +2,7 @@ Source: snoopy
 Section: admin
 Priority: optional
 Maintainer: Zed Pobre <zed@debian.org>
-Build-Depends: debhelper (>= 9), dpkg-dev (>= 1.16.1), autoconf
+Build-Depends: debhelper (>= 9), dpkg-dev (>= 1.16.1), autoconf, libtool
 Standards-Version: 3.9.6
 Homepage: https://github.com/a2o/snoopy/
 Vcs-Git: https://github.com/a2o/snoopy.git
