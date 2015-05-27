@@ -1,12 +1,14 @@
-snoopy (2.3.1-1) unstable; urgency=medium
+snoopy (2.3.1-1) unstable; urgency=high
 
   * New upstream version, new upstream homepage
+  * Updated copyright file
   * Fixes the boot loop with systemd (closes: #784682)
-  * Changes the logging procedure in a way that prevents system lockups
-    when a remote logserver stops responding properly.
+  * This also changes the logging procedure in a way that prevents system
+    lockups when a remote logserver stops responding properly.
   * There is a new configuration file option that is NOT being used by
     this package to minimize usage overhead.  If you need this feature,
-    you will need to recompile the package.
+    you will need to recompile the package (see the comments in
+    debian/rules).
 
  -- Zed Pobre <zed@debian.org>  Tue, 19 May 2015 15:02:19 -0400
 
