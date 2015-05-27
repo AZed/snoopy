@@ -13,6 +13,11 @@ override_dh_auto_configure:
 	autoconf
 	dh_auto_configure -- --libdir=/lib
 
+	# If you want to use the optional filtering and configuration
+	# file, comment out the above dh_auto_configure and uncomment
+	# the one below:
+	#dh_auto_configure -- --libdir=lib --enable-config-file --enable-filtering
+
 override_dh_install:
 	dh_install
 	ln -s libsnoopy.so.0.0.0 debian/snoopy/lib/snoopy.so
