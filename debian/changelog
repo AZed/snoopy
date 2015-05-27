@@ -1,6 +1,6 @@
 snoopy (2.3.1-1) unstable; urgency=medium
 
-  * New upstream version
+  * New upstream version, new upstream homepage
   * Fixes the boot loop with systemd (closes: #784682)
   * Changes the logging procedure in a way that prevents system lockups
     when a remote logserver stops responding properly.
