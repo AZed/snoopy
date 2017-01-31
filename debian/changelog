@@ -1,3 +1,13 @@
+snoopy (2.3.2-1) unstable; urgency=medium
+
+  * Orphaning package
+  * New upstream version
+  * Standards-Version: 3.9.8
+  * Enable config files and filtering by default (closes: #837617)
+  * Enable multiarch support (closes: #791685, #791687)
+
+ -- Zed Pobre <zed@debian.org>  Thu, 31 Jan 2017 13:33:09 -0400
+
 snoopy (2.3.1-2) unstable; urgency=medium
 
   * Add automake to build-depends (closes: #788323)

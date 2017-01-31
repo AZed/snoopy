@@ -15,6 +15,11 @@ Comment:
   .
   All remaining source is taken from the GitHub Git repository listed
   in the Source field above.
+
+Files: *
+Copyright: 2000-2010 Marius Aamodt Eriksen <marius@umich.edu>,
+           2000-2010 Mike Baker <mbm@linux.com>,
+           2010-2011 Boštjan Škufca <bostjan@a2o.si>
 License: GPL-2+
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -29,13 +34,6 @@ License: GPL-2+
   On Debian systems, the full text of the GNU General Public
   License version 2 can be found in the file
   `/usr/share/common-licenses/GPL-2'.
-
-Files: *
-Copyright: 2000-2010 Marius Aamodt Eriksen <marius@umich.edu>,
-           2000-2010 Mike Baker <mbm@linux.com>,
-           2010-2011 Boštjan Škufca <bostjan@a2o.si>
-License: GPL-2+
-  See above.
 
 Files: debian/*
 Copyright: 2001 Aubin Paul <aubin@debian.org>,

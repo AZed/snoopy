@@ -8,11 +8,11 @@ set -e
 set -e
 
 PRELOAD="/etc/ld.so.preload"
-LIBNAME="/lib/snoopy.so"
+LIBNAME="snoopy.so"
 
 if [ "$1" = "configure" ]; then
     # is snoopy already in $PRELOADFILE?
-    test -f $PRELOAD && grep "^$LIBNAME" $PRELOAD && exit 0
+    test -f $PRELOAD && grep "$LIBNAME" $PRELOAD && exit 0
 
     db_get snoopy/install-ld-preload
     if [ x"$RET" = x"true" ]; then

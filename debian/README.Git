@@ -32,4 +32,9 @@ Upstream versions are tagged with the version number (no prefix, to
 match the upstream Git repository tagging syntax).  Debian versions
 are tagged as "debian/x.y.z-d"
 
--- Zed Pobre, 2011-06-02
+New upstream versions are released by merging the upstream version tag
+into branch debian, then editing debian/* appropriately, committing,
+and using git-buildpackage to build the package directly from the
+repository.
+
+-- Zed Pobre, 2017-01-31

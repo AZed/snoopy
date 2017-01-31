@@ -1,15 +1,16 @@
 Source: snoopy
 Section: admin
 Priority: optional
-Maintainer: Zed Pobre <zed@debian.org>
+Maintainer: Debian QA Group <packages@qa.debian.org>
 Build-Depends: debhelper (>= 9), dpkg-dev (>= 1.16.1), autoconf, automake, libtool
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: https://github.com/a2o/snoopy/
 Vcs-Git: https://github.com/a2o/snoopy.git
 Vcs-Browser: https://github.com/a2o/snoopy
 
 Package: snoopy
 Architecture: any
+Multi-Arch: same
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: execve() wrapper and logger
  snoopy is merely a shared library that is used as a wrapper
@@ -19,3 +20,6 @@ Description: execve() wrapper and logger
  administrator's actions as well as getting a good 'feel' of
  what's going on in the system (for example Apache running cgi
  scripts).
+ .
+ This type of monitoring can be bypassed by hostile users, and should
+ not be considered a secure replacement for tools like auditd.
